@@ -1,0 +1,13 @@
+#nav{
+    height: 80px;
+   
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.icon{
+
+    position: relative;
+    right: 100px;
+}

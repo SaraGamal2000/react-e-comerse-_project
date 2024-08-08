@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AppRoute from "./Routes/Routes";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import LanguageContext from "./context/Language";
+import ThemeContext from "./context/Theme_C";
+import store from "./Store/Store";
+import { Provider } from "react-redux";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [language, setLanguage] = useState("en");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Provider store={store}>
+        <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+          <LanguageContext.Provider value={{ language, setLanguage }}>
+            <div dir={language === "en" ? "ltr" : "rtl"}>
+              <AppRoute />
+            </div>
+          </LanguageContext.Provider>
+        </ThemeContext.Provider>
+      </Provider>
+    </>
   );
 }
 
